@@ -8,6 +8,13 @@ export const metadata = {
   description: "هذا الموقع تم إنشاؤه بـ Next.js",
 };
 
+/** Export statique : on liste les langues à générer */
+export const dynamicParams = false; // n'accepte que celles ci-dessous
+export function generateStaticParams() {
+  // ⚠️ mets exactement tes langues supportées
+  return [{ lang: "ar" }, { lang: "fr" }, { lang: "en" }];
+}
+
 const translations = {
   ar: {
     nav: ["الرئيسية", "الوكالة", "خارطة الطريق", "المشاريع", "الفعاليات", "التوظيف", "اتصل بنا"],
@@ -37,17 +44,19 @@ const translations = {
 
 export default function RootLayout({ children, params }) {
   const lang = params.lang || "ar";
-  const t = translations[lang];
+  const t = translations[lang] || translations.ar;
 
   return (
-    <html lang={params.lang} dir={lang === "ar" ? "rtl" : "ltr"}>
+    <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
       <body style={{ color: "black" }}>
         {/* ======= Navbar ======= */}
         <nav style={{ background: "#003366", padding: "1rem", color: "white" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-            {/* اليسار: شعار + روابط */}
+            {/* gauche: logo + liens */}
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <Link href={'/${lang}'} style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
+              {/* ⚠️ corrige l'interpolation: utilise des backticks */}
+              <Link href={`/${lang}`} style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
+                {/* ⚠️ src absolu pour marcher avec basePath */}
                 <Image src="/4.jpg" alt="شعار الوكالة" width={40} height={40} style={{ objectFit: "cover", borderRadius: 6 }} />
               </Link>
               <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
@@ -60,9 +69,9 @@ export default function RootLayout({ children, params }) {
                 <Link href={`/${lang}/contact`}>{t.nav[6]}</Link>
               </div>
             </div>
-            {/* اليمين: زر اللغة */}
+            {/* droite: switcher */}
             <div style={{ display: "flex", alignItems: "center" }}>
-              <LanguageSwitcher currentLang={params.lang} />
+              <LanguageSwitcher currentLang={lang} />
             </div>
           </div>
         </nav>
@@ -73,14 +82,15 @@ export default function RootLayout({ children, params }) {
         {/* ======= Footer ======= */}
         <footer style={{ background: "#003366", textAlign: "center", padding: "1rem", color: "white" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
-            {/* الوكالة */}
+            {/* agence */}
             <div style={{ flex: "1", minWidth: "200px", marginBottom: "1rem" }}>
-              <Image src="./4.jpg" alt="Logo Agence Numérique" width={45} height={45} />
+              {/* ⚠️ src absolu ici aussi */}
+              <Image src="/4.jpg" alt="Logo Agence Numérique" width={45} height={45} />
               <h3 style={{ color: "white" }}>{t.footer.agenceTitle}</h3>
               <p style={{ color: "white" }}>{t.footer.agenceDesc1}</p>
               <p style={{ color: "white" }}>{t.footer.agenceDesc2}</p>
             </div>
-            {/* تابعنا */}
+            {/* suivre */}
             <div style={{ flex: "1", minWidth: "200px", marginBottom: "1rem" }}>
               <h3 style={{ color: "white" }}>{t.footer.followUs}</h3>
               <ul style={{ listStyle: "none", padding: 0 }}>
@@ -89,7 +99,7 @@ export default function RootLayout({ children, params }) {
                 <li><a href="#" style={{ color: "white", textDecoration: "none" }}>LinkedIn</a></li>
               </ul>
             </div>
-            {/* روابط سريعة */}
+            {/* liens rapides */}
             <div style={{ flex: "1", minWidth: "200px", marginBottom: "1rem" }}>
               <h3 style={{ color: "white" }}>{t.footer.quickLinks}</h3>
               <ul style={{ listStyle: "none", padding: 0 }}>
@@ -99,7 +109,7 @@ export default function RootLayout({ children, params }) {
                 <li><a href="#" style={{ color: "white" }}>{t.nav[6]}</a></li>
               </ul>
             </div>
-            {/* معلومات الاتصال */}
+            {/* contact */}
             <div style={{ flex: "1", minWidth: "200px", marginBottom: "1rem" }}>
               <h3 style={{ color: "white" }}>{t.footer.contactInfo}</h3>
               {t.footer.contactDetails.map((line, idx) => (
