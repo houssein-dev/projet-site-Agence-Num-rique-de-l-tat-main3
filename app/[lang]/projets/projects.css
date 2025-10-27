@@ -1,0 +1,161 @@
+/* صفحة المشاريع */
+.projects-page {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f4efef;
+  color: #111;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.projects-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.projects-header p {
+  color: #555;
+}
+
+/* شبكة البطاقات */
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* بطاقة المشروع */
+.project-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+/* ألوان مختلفة للبطاقات حسب المشروع */
+.project-card.blue { background-color: #e6f0ff; }
+.project-card.yellow { background-color: #fff8e1; }
+.project-card.orange { background-color: #fff3e0; }
+.project-card.purple { background-color: #f0e6ff; }
+.project-card.cyan { background-color: #e0f7fa; }
+.project-card.green { background-color: #e6ffed; }
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.project-top .icon {
+  font-size: 2rem;
+}
+
+.project-top .status {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.project-card h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.project-card h3 {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.project-card ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.project-card ul li {
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.project-footer {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+/* شريط التقدم */
+.progress-bar {
+  width: 100%;
+  height: 08px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #96c1ef;
+  transition: width 0.6s ease;
+}
+
+.progress-text {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* قسم الأفكار */
+.idea-section {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.idea-section h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.idea-section p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.idea-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-primary {
+  background-color: #a4c5e8;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #3378c1;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  border: none;
+  padding: 0.5rem}

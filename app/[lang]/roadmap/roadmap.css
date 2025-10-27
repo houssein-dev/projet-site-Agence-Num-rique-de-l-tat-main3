@@ -1,0 +1,137 @@
+.projects-page {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #111;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
+.projects-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.projects-header p {
+  color: #0b0b0b;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.project-card {
+  background-color: #fafbfb;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+.project-card.blue { background-color: #fcfcfd; }
+.project-card.green { background-color: #fafbfb; }
+.project-card.purple { background-color: #fafafa; }
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.project-top .icon {
+  font-size: 2rem;
+}
+
+.project-top .status {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.project-card h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.project-card h3 {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.project-card ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.project-card ul li {
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.project-footer {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.goals-section {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.goals-section h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.goals-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.goal-card {
+  background-color: #fbfcfc;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 250px;
+  text-align: center;
+}
+
+.goal-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.goal-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.goal-card p {
+  font-size: 0.9rem;
+  color: hsl(0, 0%, 4%);
+}
+
+.goal-progress {
+  font-weight: bold;
+  margin-top: 0.3rem;
+}

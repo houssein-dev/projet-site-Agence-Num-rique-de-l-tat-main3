@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "Agence",
+    "projects": "Projets", 
+    "events": "Événements",
+    "contact": "Contact"
+  },
+  "home": {
+    "heroTitle": "Agence Numérique de l'État",
+    "heroSubtitle": "Mener la transformation numérique vers un avenir innovant et développé",
+    "presentationTitle": "Présentation de l'Agence Numérique de l'État",
+    "presentationDesc": "L'Agence Numérique de l'État est l'institution leader en matière de transformation numérique en Mauritanie, visant à développer et moderniser l'infrastructure numérique et à améliorer les services électroniques pour les citoyens et les institutions.\n\nNous mettons en œuvre une stratégie globale de transformation numérique couvrant tous les secteurs gouvernementaux, en mettant l'accent sur l'innovation et la qualité des services numériques avancés.",
+    "stats": {
+      "beneficiaries": {
+        "value": "+1M", 
+        "label": "Bénéficiaires"
+      },
+      "ministries": {
+        "value": "+25",
+        "label": "Ministères partenaires"
+      },
+      "projects": {
+        "value": "+50",
+        "label": "Projets numériques" 
+      }
+    },
+    "newsTitle": "Dernières nouvelles",
+    "news": {
+      "0": {
+        "title": "Ateliers de formation pour le personnel",
+        "desc": "Organisation d'ateliers pour améliorer les compétences numériques des employés gouvernementaux."
+      },
+      "1": {
+        "title": "Partenariat avec les ministères",
+        "desc": "L'Agence Numérique a signé des accords de coopération avec plusieurs ministères pour renforcer la transformation numérique."
+      },
+      "2": {
+        "title": "Lancement d'une nouvelle plateforme gouvernementale", 
+        "desc": "Une nouvelle plateforme gouvernementale a été lancée pour faciliter l'accès aux services numériques pour les citoyens."
+      }
+    }
+  },
+  "footer": {
+    "title": "Agence Numérique de l'État",
+    "description": "Nous menons la transformation numérique en Mauritanie avec des solutions technologiques innovantes et des services numériques de haute qualité.",
+    "followUs": "Suivez-nous",
+    "quickLinks": "Liens rapides",
+    "contactInfo": "Informations de contact",
+    "address": "Nouakchott, Mauritanie", 
+    "copyright": "Agence Numérique de l'État"
+  }
+}
