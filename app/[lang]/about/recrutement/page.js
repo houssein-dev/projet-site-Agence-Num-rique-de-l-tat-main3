@@ -1,6 +1,7 @@
 'use client';
 import { use } from "react";
 
+import styles from "./jobs.module.css";
 
 export default function JobsPage({ params }) {
   const {lang} =  use(params) ;
