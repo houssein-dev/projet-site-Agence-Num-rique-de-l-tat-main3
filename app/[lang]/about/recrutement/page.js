@@ -1,11 +1,10 @@
 'use client';
-import { use } from "react";
 
 import styles from "./jobs.module.css";
 
 export default function JobsPage({ params }) {
-  const {lang} =  use(params) ;
-  const currentLang =lang ||"ar" ;
+  const lang = params?.lang ?? "ar"; // ✅ pas de use()
+  
   const translations = {
     ar: {
       heroTitle: "فرص التوظيف",
@@ -25,49 +24,24 @@ export default function JobsPage({ params }) {
           title: "مطور تطبيقات الويب",
           meta: ["القسم التقني", "دوام كامل", "📍 نواكشوط", "3-5 سنوات"],
           deadline: "2025/03/15",
-          requirements: [
-            "خبرة في React.js و Node.js",
-            "معرفة MySQL/PostgreSQL",
-            "تصميم APIs",
-            "إتقان العربية والفرنسية"
-          ],
-          responsibilities: [
-            "تطوير تطبيقات الويب الحكومية",
-            "صيانة الأنظمة",
-            "التعاون مع الفريق",
-            "كتابة الوثائق التقنية"
-          ]
+          requirements: ["خبرة في React.js و Node.js","معرفة MySQL/PostgreSQL","تصميم APIs","إتقان العربية والفرنسية"],
+          responsibilities: ["تطوير تطبيقات الويب الحكومية","صيانة الأنظمة","التعاون مع الفريق","كتابة الوثائق التقنية"]
         },
         {
           title: "محلل أنظمة",
           meta: ["إدارة المشاريع", "دوام كامل", "📍 نواكشوط", "2-4 سنوات"],
           deadline: "2025/03/20",
-          requirements: [
-            "شهادة في علوم الحاسوب",
-            "خبرة في تحليل الأنظمة",
-            "مهارات إدارة المشاريع",
-            "إتقان العربية والإنجليزية"
-          ],
-          responsibilities: [
-            "تحليل المتطلبات",
-            "إعداد التوثيق التقني",
-            "التنسيق مع الفرق",
-            "ضمان جودة التطبيقات"
-          ]
+          requirements: ["شهادة في علوم الحاسوب","خبرة في تحليل الأنظمة","مهارات إدارة المشاريع","إتقان العربية والإنجليزية"],
+          responsibilities: ["تحليل المتطلبات","إعداد التوثيق التقني","التنسيق مع الفرق","ضمان جودة التطبيقات"]
         }
       ],
       applicationProcessTitle: "عملية التقديم",
-      applicationSteps: [
-        "التقديم الإلكتروني",
-        "المراجعة الأولية",
-        "المقابلة",
-        "القرار النهائي"
-      ],
+      applicationSteps: ["التقديم الإلكتروني","المراجعة الأولية","المقابلة","القرار النهائي"],
       trainingTitle: "برنامج التدريب والتكوين",
       trainingDesc: "نوفر فرص تدريب للطلاب والخريجين الجدد لاكتساب الخبرة العملية في مجال التكنولوجيا",
       trainings: [
-        { title: "التدريب الصيفي", items: ["مدة 3 أشهر", "للطلاب في السنوات الأخيرة", "مشاريع عملية"] },
-        { title: "برنامج الخريجين الجدد", items: ["مدة 6-12 شهر", "للخريجين الجدد", "فرصة للتوظيف"] }
+        { title: "التدريب الصيفي", items: ["مدة 3 أشهر","للطلاب في السنوات الأخيرة","مشاريع عملية"] },
+        { title: "برنامج الخريجين الجدد", items: ["مدة 6-12 شهر","للخريجين الجدد","فرصة للتوظيف"] }
       ],
       contactTitle: "هل لديك أسئلة؟",
       contactDesc: "تواصل مع فريق الموارد البشرية",
@@ -76,78 +50,87 @@ export default function JobsPage({ params }) {
     },
     fr: {
       heroTitle: "Offres d'emploi",
-      heroDesc: "Rejoignez notre équipe spécialisée et contribuez à la transformation numérique en Mauritanie",
+      heroDesc: "Rejoignez notre équipe et contribuez à la transformation numérique en Mauritanie",
       whyJoinTitle: "Pourquoi nous rejoindre ?",
       benefits: [
-        { icon: "💰", title: "Salaire compétitif", desc: "Des salaires attractifs selon le marché et l'expérience" },
-        { icon: "📈", title: "Développement professionnel", desc: "Programmes de formation et opportunités d'évolution" },
-        { icon: "💻", title: "Environnement moderne", desc: "Dernières technologies et outils de travail" },
-        { icon: "🏥", title: "Assurance santé", desc: "Couverture complète pour l'employé et sa famille" },
-        { icon: "🏠", title: "Flexibilité", desc: "Options de travail flexible et à distance" },
-        { icon: "🌴", title: "Vacances", desc: "Un système de congés généreux et équilibré" },
+        { icon: "💰", title: "Salaire compétitif", desc: "Rémunération attractive selon marché/expérience" },
+        { icon: "📈", title: "Développement pro", desc: "Formations et perspectives d’évolution" },
+        { icon: "💻", title: "Environnement moderne", desc: "Technos et outils récents" },
+        { icon: "🏥", title: "Assurance santé", desc: "Couverture complète pour vous et votre famille" },
+        { icon: "🏠", title: "Flexibilité", desc: "Télétravail et horaires flexibles" },
+        { icon: "🌴", title: "Congés", desc: "Politique de congés équilibrée" },
       ],
       jobsTitle: "Postes disponibles",
       jobs: [
         {
           title: "Développeur Web",
-          meta: ["Département technique", "Temps plein", "📍 Nouakchott", "3-5 ans"],
+          meta: ["Département technique","Temps plein","📍 Nouakchott","3-5 ans"],
           deadline: "2025/03/15",
-          requirements: [
-            "Expérience en React.js et Node.js",
-            "Connaissance MySQL/PostgreSQL",
-            "Conception d'APIs",
-            "Maîtrise de l'arabe et du français"
-          ],
-          responsibilities: [
-            "Développement d'applications web gouvernementales",
-            "Maintenance des systèmes",
-            "Collaboration avec l'équipe",
-            "Rédaction de la documentation technique"
-          ]
+          requirements: ["React.js & Node.js","MySQL/PostgreSQL","Conception d’APIs","Arabe & Français"],
+          responsibilities: ["Développer des apps web","Maintenance","Collaboration équipe","Documentation"]
         },
         {
           title: "Analyste systèmes",
-          meta: ["Gestion de projet", "Temps plein", "📍 Nouakchott", "2-4 ans"],
+          meta: ["Gestion de projet","Temps plein","📍 Nouakchott","2-4 ans"],
           deadline: "2025/03/20",
-          requirements: [
-            "Diplôme en informatique",
-            "Expérience en analyse des systèmes",
-            "Compétences en gestion de projet",
-            "Maîtrise de l'arabe et de l'anglais"
-          ],
-          responsibilities: [
-            "Analyse des besoins",
-            "Préparation de la documentation technique",
-            "Coordination avec les équipes",
-            "Assurer la qualité des applications"
-          ]
+          requirements: ["Diplôme informatique","Analyse des systèmes","Gestion de projet","Arabe & Anglais"],
+          responsibilities: ["Analyse des besoins","Docs techniques","Coordination équipes","Qualité applicative"]
         }
       ],
       applicationProcessTitle: "Processus de candidature",
-      applicationSteps: [
-        "Candidature en ligne",
-        "Révision initiale",
-        "Entretien",
-        "Décision finale"
-      ],
+      applicationSteps: ["Candidature en ligne","Revue initiale","Entretien","Décision finale"],
       trainingTitle: "Programme de formation",
-      trainingDesc: "Nous offrons des stages aux étudiants et jeunes diplômés pour acquérir une expérience pratique en technologie",
+      trainingDesc: "Stages pour étudiants et jeunes diplômés afin d’acquérir une expérience pratique",
       trainings: [
-        { title: "Stage d'été", items: ["Durée 3 mois", "Pour les étudiants en dernière année", "Projets pratiques"] },
-        { title: "Programme jeunes diplômés", items: ["Durée 6-12 mois", "Pour les jeunes diplômés", "Opportunité d'emploi"] }
+        { title: "Stage d’été", items: ["3 mois","Étudiants fin de cycle","Projets pratiques"] },
+        { title: "Programme jeunes diplômés", items: ["6–12 mois","Jeunes diplômés","Possibilité d’embauche"] }
       ],
       contactTitle: "Des questions ?",
-      contactDesc: "Contactez l'équipe RH",
+      contactDesc: "Contactez l’équipe RH",
+      contactEmail: "📧 hr@an-etat.gov.mr",
+      contactPhone: "📞 (+222) 45 25 XX XX"
+    },
+    en: {
+      heroTitle: "Job opportunities",
+      heroDesc: "Join our team and help lead Mauritania’s digital transformation",
+      whyJoinTitle: "Why join us?",
+      benefits: [
+        { icon: "💰", title: "Competitive pay", desc: "Market-aligned compensation" },
+        { icon: "📈", title: "Career growth", desc: "Training and advancement paths" },
+        { icon: "💻", title: "Modern setup", desc: "Latest tools and technologies" },
+        { icon: "🏥", title: "Health coverage", desc: "Comprehensive benefits" },
+        { icon: "🏠", title: "Flexibility", desc: "Hybrid/remote options" },
+        { icon: "🌴", title: "Time off", desc: "Generous, balanced policy" },
+      ],
+      jobsTitle: "Open positions",
+      jobs: [],
+      applicationProcessTitle: "Application process",
+      applicationSteps: ["Online application","Initial review","Interview","Final decision"],
+      trainingTitle: "Training program",
+      trainingDesc: "Internships for students and graduates to gain hands-on experience",
+      trainings: [
+        { title: "Summer internship", items: ["3 months","Final-year students","Practical projects"] },
+        { title: "Graduate program", items: ["6–12 months","New graduates","Hiring opportunity"] }
+      ],
+      contactTitle: "Questions?",
+      contactDesc: "Reach out to the HR team",
       contactEmail: "📧 hr@an-etat.gov.mr",
       contactPhone: "📞 (+222) 45 25 XX XX"
     }
   };
 
-  const t = translations[lang];
+  // Fallback sûr si une langue/clés manquent
+  const base = translations[lang] ?? translations.ar;
+  const t = {
+    ...translations.ar,
+    ...base,
+    benefits: base.benefits?.length ? base.benefits : translations.ar.benefits,
+    jobs: base.jobs?.length ? base.jobs : translations.fr.jobs // recycle FR si EN vide
+  };
 
   return (
     <section className={styles.jobsPage} dir={lang === "ar" ? "rtl" : "ltr"}>
-      {/* الشريط العلوي */}
+      {/* Hero */}
       <div className={styles.jobsHero}>
         <div className={styles.heroOverlay}>
           <h1>{t.heroTitle}</h1>
@@ -155,7 +138,7 @@ export default function JobsPage({ params }) {
         </div>
       </div>
 
-      {/* لماذا تنضم إلينا */}
+      {/* Pourquoi nous rejoindre */}
       <div className={styles.whyJoin}>
         <h2>{t.whyJoinTitle}</h2>
         <div className={styles.benefitsGrid}>
@@ -169,35 +152,42 @@ export default function JobsPage({ params }) {
         </div>
       </div>
 
-      {/* الوظائف */}
+      {/* Jobs */}
       <div className={styles.jobsList}>
         <h2>{t.jobsTitle}</h2>
         {t.jobs.map((job, idx) => (
           <div key={idx} className={styles.jobCard}>
             <h3>{job.title}</h3>
             <div className={styles.jobMeta}>
-              {job.meta.map((m, mid) => <span key={mid}>{m}</span>)}
+              {job.meta?.map((m, mid) => <span key={mid}>{m}</span>)}
             </div>
-            <p><strong className={styles.deadline}>{lang === "ar" ? "آخر موعد للتقديم:" : "Date limite:"}</strong> {job.deadline}</p>
+            {job.deadline && (
+              <p>
+                <strong className={styles.deadline}>
+                  {lang === "ar" ? "آخر موعد للتقديم:" : lang === "fr" ? "Date limite :" : "Deadline:"}
+                </strong>{" "}
+                {job.deadline}
+              </p>
+            )}
             <div className={styles.jobDetails}>
               <div>
-                <h4>{lang === "ar" ? "المتطلبات:" : "Exigences:"}</h4>
-                <ul>{job.requirements.map((r, rid) => <li key={rid}>{r}</li>)}</ul>
+                <h4>{lang === "ar" ? "المتطلبات:" : lang === "fr" ? "Exigences :" : "Requirements:"}</h4>
+                <ul>{job.requirements?.map((r, rid) => <li key={rid}>{r}</li>)}</ul>
               </div>
               <div>
-                <h4>{lang === "ar" ? "المسؤوليات:" : "Responsabilités:"}</h4>
-                <ul>{job.responsibilities.map((r, rid) => <li key={rid}>{r}</li>)}</ul>
+                <h4>{lang === "ar" ? "المسؤوليات:" : lang === "fr" ? "Responsabilités :" : "Responsibilities:"}</h4>
+                <ul>{job.responsibilities?.map((r, rid) => <li key={rid}>{r}</li>)}</ul>
               </div>
             </div>
             <div className={styles.actions}>
-              <a href="#" className={styles.btnApply}>{lang === "ar" ? "تقدم الآن" : "Postuler"}</a>
-              <a href="#" className={styles.btnShare}>{lang === "ar" ? "مشاركة الوظيفة" : "Partager"}</a>
+              <a href="#" className={styles.btnApply}>{lang === "ar" ? "تقدم الآن" : lang === "fr" ? "Postuler" : "Apply now"}</a>
+              <a href="#" className={styles.btnShare}>{lang === "ar" ? "مشاركة الوظيفة" : lang === "fr" ? "Partager" : "Share"}</a>
             </div>
           </div>
         ))}
       </div>
 
-      {/* عملية التقديم */}
+      {/* Processus */}
       <div className={styles.steps}>
         <h2>{t.applicationProcessTitle}</h2>
         <div className={styles.stepsGrid}>
@@ -207,7 +197,7 @@ export default function JobsPage({ params }) {
         </div>
       </div>
 
-      {/* التدريب */}
+      {/* Formation */}
       <div className={styles.training}>
         <h2>{t.trainingTitle}</h2>
         <p>{t.trainingDesc}</p>
@@ -217,10 +207,12 @@ export default function JobsPage({ params }) {
             <ul>{tr.items.map((item, id) => <li key={id}>{item}</li>)}</ul>
           </div>
         ))}
-        <a href="#" className={styles.btnApply}>{lang === "ar" ? "قدم طلب التدريب" : "Postuler au stage"}</a>
+        <a href="#" className={styles.btnApply}>
+          {lang === "ar" ? "قدم طلب التدريب" : lang === "fr" ? "Postuler au stage" : "Apply for internship"}
+        </a>
       </div>
 
-      {/* تواصل */}
+      {/* Contact */}
       <div className={styles.contact}>
         <h2>{t.contactTitle}</h2>
         <p>{t.contactDesc}</p>
