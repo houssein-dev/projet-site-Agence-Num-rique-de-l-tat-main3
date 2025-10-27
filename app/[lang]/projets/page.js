@@ -1,7 +1,6 @@
 'use client';
-import { FaCar, FaEye } from 'react-icons/fa';
+// Pas de import { use } from 'react' ici
 import './projects.css';
-import { use } from 'react';
 
 const translations = {
   ar: {
@@ -11,6 +10,7 @@ const translations = {
     ideaDesc: "نحن نسعى دائماً لتطوير حلول رقمية مبتكرة تخدم المواطنين وتحسن الخدمات الحكومية. شاركنا أفكارك ومقترحاتك للمساهمة في التحول الرقمي.",
     btnNew: "اقتراح مشروع جديد",
     btnAll: "عرض جميع المشاريع",
+    labels: { start: "بداية", end: "نهاية" },
     projects: [
       {
         icon:"👁️",
@@ -114,20 +114,21 @@ const translations = {
     headerTitle: "Projets et initiatives numériques",
     headerDesc: "Découvrez les projets numériques phares qui conduisent la transformation technologique en Mauritanie",
     ideaTitle: "Vous avez une idée de projet numérique ?",
-    ideaDesc: "Nous nous efforçons toujours de développer des solutions numériques innovantes pour servir les citoyens et améliorer les services gouvernementaux. Partagez vos idées et suggestions pour contribuer à la transformation numérique.",
+    ideaDesc: "Nous développons des solutions numériques innovantes pour servir les citoyens et améliorer les services. Partagez vos idées pour contribuer à la transformation numérique.",
     btnNew: "Proposer un nouveau projet",
     btnAll: "Voir tous les projets",
+    labels: { start: "Début", end: "Fin" },
     projects: [
       {
         icon: "👁️",
         status: "Terminé",
         category: "Services gouvernementaux",
         title: 'Plateforme "Ain" - Système de gestion des plaintes',
-        desc: "Portail permettant aux citoyens de signaler des problèmes administratifs et de suivre l'évolution de leurs plaintes, afin de renforcer la transparence et d'améliorer le traitement.",
+        desc: "Portail permettant aux citoyens de signaler des problèmes administratifs et de suivre l'évolution de leurs plaintes pour plus de transparence.",
         features: [
-          "Interface conviviale pour les citoyens",
-          "Système de suivi des plaintes en temps réel",
-          "Classification automatique des plaintes"
+          "Interface conviviale",
+          "Suivi en temps réel",
+          "Classification automatique"
         ],
         progress: 100,
         start: "Janvier 2023",
@@ -139,11 +140,11 @@ const translations = {
         status: "En cours",
         category: "Transport et circulation",
         title: "Plateforme de gestion des infractions routières",
-        desc: "Système numérique pour enregistrer et traiter les infractions en ligne, avec conservation des registres et assistance routière.",
+        desc: "Saisie et traitement en ligne des infractions, avec conservation des registres et assistance routière.",
         features: [
-          "Enregistrement des infractions en ligne",
-          "Paiement des amendes en ligne",
-          "Système de traitement des recours"
+          "Enregistrement en ligne",
+          "Paiement des amendes",
+          "Traitement des recours"
         ],
         progress: 85,
         start: "Mars 2024",
@@ -153,13 +154,13 @@ const translations = {
       {
         icon: "🏥",
         status: "En conception",
-        category: "Secteur de la santé",
-        title: "Plateforme numérique pour le secteur de la santé",
-        desc: "Système numérique pour gérer les établissements et rendez-vous médicaux, visant à développer le secteur de la santé et améliorer la gestion des soins.",
+        category: "Santé",
+        title: "Plateforme numérique du secteur de la santé",
+        desc: "Gestion des établissements et des rendez-vous pour améliorer la prise en charge.",
         features: [
-          "Connecter tous les hôpitaux et centres de santé",
-          "Gestion des dossiers médicaux électroniques",
-          "Système de réservation de rendez-vous médicaux"
+          "Connexion des hôpitaux",
+          "Dossier médical électronique",
+          "Réservation de rendez-vous"
         ],
         progress: 30,
         start: "Janvier 2024",
@@ -170,12 +171,12 @@ const translations = {
         icon: "⚖️",
         status: "Planifié",
         category: "Justice commerciale",
-        title: "Plateforme de gestion du système judiciaire commercial",
-        desc: "Plateforme pour gérer les affaires commerciales électroniquement et archiver les décisions judiciaires.",
+        title: "Plateforme de gestion judiciaire commerciale",
+        desc: "Gestion électronique des affaires et archivage des décisions.",
         features: [
-          "Gestion électronique des dossiers judiciaires",
-          "Système de suivi et notifications",
-          "Archivage des décisions judiciaires"
+          "Gestion des dossiers",
+          "Suivi & notifications",
+          "Archivage"
         ],
         progress: 15,
         start: "Juillet 2024",
@@ -186,12 +187,12 @@ const translations = {
         icon: "💧",
         status: "En étude",
         category: "Eau et assainissement",
-        title: "Système national d'information sur l'eau et l'assainissement (SNEAS)",
-        desc: "Base de données pour gérer les ressources en eau, surveiller la qualité de l'eau et facturer les services.",
+        title: "Système national d'information (SNEAS)",
+        desc: "Gestion des ressources, qualité de l’eau et facturation.",
         features: [
-          "Surveillance de la qualité de l'eau en temps réel",
-          "Gestion des réseaux de distribution",
-          "Facturation électronique des services"
+          "Surveillance qualité",
+          "Gestion des réseaux",
+          "Facturation"
         ],
         progress: 5,
         start: "Septembre 2024",
@@ -201,13 +202,13 @@ const translations = {
       {
         icon: "📚",
         status: "En cours",
-        category: "Formation et qualification",
-        title: "Renforcement du commerce numérique au sein du ministère",
-        desc: "Programme de formation pour les employés du gouvernement afin d'améliorer leurs compétences dans les outils numériques et la gestion des données.",
+        category: "Formation & qualification",
+        title: "Renforcement du commerce numérique",
+        desc: "Programme de formation aux outils numériques et à la gestion des données.",
         features: [
-          "Cours de formation spécialisés",
-          "Certificats accrédités",
-          "Application pratique sur les systèmes"
+          "Cours spécialisés",
+          "Certificats",
+          "Pratique sur systèmes"
         ],
         progress: 75,
         start: "Janvier 2024",
@@ -215,13 +216,32 @@ const translations = {
         color: "green"
       }
     ]
+  },
+  en: {
+    headerTitle: "Digital projects and initiatives",
+    headerDesc: "Explore flagship digital projects driving technological transformation in Mauritania",
+    ideaTitle: "Got a digital project idea?",
+    ideaDesc: "We strive to build innovative digital solutions. Share your ideas to contribute to the transformation.",
+    btnNew: "Propose a new project",
+    btnAll: "View all projects",
+    labels: { start: "Start", end: "End" },
+    // Pour l'exemple on réutilise le contenu FR (tu peux traduire plus tard)
+    projects: []
   }
 };
 
+// Si pas de projets en EN, on réutilise les FR (évite les erreurs et garde le contenu)
+function getLocale(lang) {
+  const base = translations[lang] ?? translations.ar;
+  if (lang === 'en' && (!base.projects || base.projects.length === 0)) {
+    return { ...base, projects: translations.fr.projects };
+  }
+  return base;
+}
+
 export default function ProjectsPage({ params }) {
-  const {lang} = use(params);
-  const currentLang=lang|| "ar";
-  const t = translations[currentLang];
+  const lang = params?.lang ?? 'ar';
+  const t = getLocale(lang);
 
   return (
     <section className="projects-page">
@@ -232,7 +252,7 @@ export default function ProjectsPage({ params }) {
 
       <div className="projects-grid">
         {t.projects.map((p, i) => (
-          <div key={i} className={'project-card ${p.color}'}>
+          <div key={i} className={`project-card ${p.color}`}>
             <div className="project-top">
               <span className="icon">{p.icon}</span>
               <span className="status">{p.status}</span>
@@ -241,18 +261,18 @@ export default function ProjectsPage({ params }) {
             <h3>{p.title}</h3>
             <p>{p.desc}</p>
             <ul>
-              {p.features.map((f,j)=><li key={j}>{f}</li>)}
+              {p.features.map((f, j) => <li key={j}>{f}</li>)}
             </ul>
 
-            {/* شريط التقدم */}
+            {/* Progress bar */}
             <div className="progress-bar">
-              <div className="progress-fill" style={{ width: '${p.progress}%' }}></div>
+              <div className="progress-fill" style={{ width: `${p.progress}%` }}></div>
             </div>
             <p className="progress-text">{p.progress}%</p>
 
             <div className="project-footer">
-              <p>{lang === "ar" ? "بداية" : "Début"}: {p.start}</p>
-              <p>{lang === "ar" ? "نهاية" : "Fin"}: {p.end}</p>
+              <p>{t.labels.start}: {p.start}</p>
+              <p>{t.labels.end}: {p.end}</p>
             </div>
           </div>
         ))}
