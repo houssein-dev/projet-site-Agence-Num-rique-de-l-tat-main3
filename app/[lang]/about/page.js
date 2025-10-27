@@ -1,6 +1,6 @@
 'use client';
 
-import styles from "./jobs.module.css";
+import styles from "./recrutement/jobs.module.css";
 
 export default function JobsPage({ params }) {
   const lang = params.lang || "ar";
