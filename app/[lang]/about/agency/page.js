@@ -157,14 +157,14 @@ export default function RoadmapPage({ params }) {
           border: "1px solid #e6e6e6",
         }}
       >
-        <Image
+        {/* <Image
           src="/cover-roadmap.jpg" // mets cette image dans public/ ; sinon remplace par /4.jpg
           alt=""
           width={1920}
           height={640}
           style={{ width: "100%", height: 300, objectFit: "cover" }}
           priority
-        />
+        /> */}
         <div
           style={{
             position: "absolute",
@@ -387,3 +387,4 @@ export default function RoadmapPage({ params }) {
     </section>
   );
 }
+src
