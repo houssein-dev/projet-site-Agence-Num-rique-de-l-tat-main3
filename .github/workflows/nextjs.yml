@@ -1,18 +1,19 @@
-name: Deploy Next.js to GitHub Pages
+name: Build & Deploy (Next.js static export)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   workflow_dispatch:
+
+# Empêche les déploiements concurrents
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -24,22 +25,25 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: 20
+          cache: npm
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build (Next static export)
-        run: |
-          npm run build
-          # Assure-toi que "build" fait bien: next build && next export
-          # Le dossier généré doit être "out/"
+      - name: Build (static export)
+        run: npm run build
+        # ⚠️ Important: ton next.config.js contient `output:'export'` + images unoptimized
+        # Le build va générer le dossier ./out automatiquement
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Add .nojekyll (Pages)
+        run: |
+          mkdir -p out
+          echo > out/.nojekyll
+
+      # ⬇️ Si tu utilises un domaine personnalisé, dé-commente et remplace:
+      # - name: Add CNAME (custom domain)
+      #   run: echo "www.ton-domaine.tld" > out/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,11 +52,10 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
