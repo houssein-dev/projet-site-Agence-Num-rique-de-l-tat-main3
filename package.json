@@ -2,12 +2,12 @@
   "name": "my-next-app",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev",
-  "build": "next build && next export",
-  "start": "next start"
-},
-
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "mkdir -p out && node -e \"require('fs').writeFileSync('out/.nojekyll','')\"",
+    "start": "next start"
+  },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "next": "15.4.6",
