@@ -1,182 +1,388 @@
-'use client';
-import './roadmap.css';
-import { use } from "react";
+// app/[lang]/roadmap/page.js
 
+// --- i18n ---
 const translations = {
   ar: {
-    headerTitle: "الخطة الزمنية للتحول الرقمي في موريتانيا",
-    headerDesc: "استكشف المراحل التنفيذية والأهداف الاستراتيجية للتحول الرقمي 2024 - 2026",
-    projects: [
-      {
-        icon: "🏛️",
-        status: "قيد التنفيذ",
-        category: "المرحلة الأولى - 2024",
-        title: "تعزيز الخدمات الرقمية في الوزارة",
-        desc: "إطلاق مشاريع رقمية أساسية لتقوية البنية التحتية الرقمية.",
-        features: [
-          "إطلاق البوابة الوطنية الموحدة للخدمات الحكومية",
-          "تطوير منصة الهوية الرقمية الموحدة",
-          "رقمنة 15 خدمة حكومية أساسية",
-          "تدريب 500 موظف حكومي"
-        ],
-        progress: "65%",
-        start: "يناير 2024",
-        end: "ديسمبر 2024",
-        color: "blue"
-      },
-      {
-        icon: "📲",
-        status: "مخطط",
-        category: "المرحلة الثانية - 2025",
-        title: "التوسع في التحول الرقمي",
-        desc: "مشاريع توسعية لربط المؤسسات وتعزيز المعاملات الرقمية.",
-        features: [
-          "ربط جميع الوزارات بالشبكة الحكومية الموحدة",
-          "إطلاق تطبيق موحد للخدمات الحكومية الذكية",
-          "تطوير نظام الدفع الإلكتروني الحكومي",
-          "إنشاء مراكز خدمة رقمية في جميع الولايات"
-        ],
-        progress: "15%",
-        start: "يناير 2025",
-        end: "ديسمبر 2025",
-        color: "green"
-      },
-      {
-        icon: "🤖",
-        status: "مستقبلي",
-        category: "المرحلة الثالثة - 2026",
-        title: "الحكومة الذكية المتكاملة",
-        desc: "مرحلة متقدمة من التحول الرقمي بالاعتماد على الذكاء الاصطناعي والتقنيات الحديثة.",
-        features: [
-          "تنفيذ نظام الذكاء الاصطناعي في اتخاذ القرارات",
-          "إطلاق منصة البيانات المفتوحة الحكومية",
-          "تطبيق تقنيات البلوك تشين في المعاملات الرسمية",
-          "تحقيق التكامل الكامل بين الأنظمة الحكومية"
-        ],
-        progress: "5%",
-        start: "يناير 2026",
-        end: "ديسمبر 2026",
-        color: "purple"
-      }
+    headerTitle: "خارطة الطريق الرقمية",
+    headerDesc:
+      "مراحل التنفيذ، الأهداف المرحلية، مؤشرات الأداء، والمخاطر مع إجراءات التخفيف لضمان تحول رقمي فعّال.",
+    phasesTitle: "المراحل الرئيسية",
+    phases: [
+      { name: "التشخيص", desc: "حصر الأنظمة والعمليات الحالية وتحديد الأولويات.", progress: 100 },
+      { name: "التصميم", desc: "هندسة الخدمات والمعايير وحوكمة البيانات.", progress: 85 },
+      { name: "التنفيذ", desc: "تطوير المنصات والتكامل وتوسيع الهوية الرقمية.", progress: 60 },
+      { name: "التحسين", desc: "تحليلات متقدمة وتجربة مستخدم أفضل وتوسيع الخدمات.", progress: 35 },
     ],
-    goalsTitle: "الأهداف الاستراتيجية",
-    goals: [
-      { icon: "🏛️", title: "الحكومة الرقمية", desc: "تحويل جميع الخدمات الحكومية إلى رقمية بحلول 2026", progress: "100% رقمنة" },
-      { icon: "👥", title: "رضا المواطنين", desc: "تحسين تجربة المستخدم للخدمات الحكومية الرقمية", progress: "90% رضا" },
-      { icon: "⚡", title: "الكفاءة التشغيلية", desc: "تقليل وقت معالجة المعاملات الحكومية بنسبة 70%", progress: "70% توفير وقت" }
-    ]
+    milestonesTitle: "محطات أساسية (2023–2026)",
+    milestones: [
+      { date: "Q4 2023", text: "إطلاق البوابة الموحدة للخدمات ذات الأولوية." },
+      { date: "Q2 2024", text: "توسيع الهوية الرقمية وربط الجهات الرئيسية." },
+      { date: "Q1 2025", text: "إطلاق الدفع الإلكتروني الموحد وخدمات الهاتف." },
+      { date: "Q4 2026", text: "لوحات قيادة وتحليلات بيانات متقدمة لاتخاذ القرار." },
+    ],
+    kpisTitle: "مؤشرات الأداء (KPIs)",
+    kpis: [
+      { label: "نسبة الخدمات الرقمية الكاملة", value: 62, target: 80 },
+      { label: "زمن إنجاز الخدمة (متوسط/دقيقة)", value: 7, target: 5 },
+      { label: "تبني الهوية الرقمية (ألف مستخدم)", value: 420, target: 600 },
+      { label: "إتاحة المنصات (uptime %)", value: 99.3, target: 99.7 },
+    ],
+    risksTitle: "المخاطر وخطط التخفيف",
+    risks: [
+      { risk: "مقاومة التغيير", mitigation: "التدريب والتواصل وإدارة التغيير." },
+      { risk: "تكامل الأنظمة القديمة", mitigation: "طبقة تكامل وواجهات APIs معيارية." },
+      { risk: "نقص المهارات", mitigation: "برامج تدريب وشراكات مع الجامعات." },
+      { risk: "مخاطر أمنية", mitigation: "معايير أمنية ومراجعات دورية واختبارات اختراق." },
+    ],
+    nextStepsTitle: "الخطوات القادمة (6 أشهر)",
+    nextSteps: [
+      "إطلاق موجة خدمات ذات أولوية للهواتف.",
+      "توسيع الربط البيني عبر طبقة تكامل وطنية.",
+      "تحسين تجربة المستخدم عبر اختبارات استعمال دورية.",
+      "لوحات مؤشرات آنية لصنّاع القرار.",
+    ],
+    ctaTitle: "شاركنا خارطة الطريق",
+    ctaText: "هل لديك ملاحظات أو اقتراحات لتحسين التنفيذ؟ نرحب بمساهمتك.",
+    ctaButton: "أرسل اقتراحك",
   },
   fr: {
-    headerTitle: "Plan temporel de la transformation numérique en Mauritanie",
-    headerDesc: "Découvrez les phases de mise en œuvre et les objectifs stratégiques de la transformation numérique 2024 - 2026",
-    projects: [
-      {
-        icon: "🏛️",
-        status: "En cours",
-        category: "Première phase - 2024",
-        title: "Renforcement des services numériques au sein du ministère",
-        desc: "Lancement de projets numériques essentiels pour renforcer l'infrastructure numérique.",
-        features: [
-          "Lancement du portail national unifié des services gouvernementaux",
-          "Développement de la plateforme d'identité numérique unifiée",
-          "Numérisation de 15 services gouvernementaux essentiels",
-          "Formation de 500 fonctionnaires"
-        ],
-        progress: "65%",
-        start: "Janvier 2024",
-        end: "Décembre 2024",
-        color: "blue"
-      },
-      {
-        icon: "📲",
-        status: "Planifié",
-        category: "Deuxième phase - 2025",
-        title: "Expansion de la transformation numérique",
-        desc: "Projets d'expansion pour connecter les institutions et améliorer les transactions numériques.",
-        features: [
-          "Connecter tous les ministères au réseau gouvernemental unifié",
-          "Lancement d'une application unifiée pour les services gouvernementaux intelligents",
-          "Développement du système de paiement électronique gouvernemental",
-          "Création de centres de services numériques dans toutes les régions"
-        ],
-        progress: "15%",
-        start: "Janvier 2025",
-        end: "Décembre 2025",
-        color: "green"
-      },
-      {
-        icon: "🤖",
-        status: "Futur",
-        category: "Troisième phase - 2026",
-        title: "Gouvernement intelligent intégré",
-        desc: "Phase avancée de la transformation numérique basée sur l'intelligence artificielle et les technologies modernes.",
-        features: [
-          "Mise en œuvre de l'intelligence artificielle dans la prise de décision",
-          "Lancement de la plateforme gouvernementale de données ouvertes",
-          "Application des technologies blockchain dans les transactions officielles",
-          "Intégration complète de tous les systèmes gouvernementaux"
-        ],
-        progress: "5%",
-        start: "Janvier 2026",
-        end: "Décembre 2026",
-        color: "purple"
-      }
+    headerTitle: "Feuille de route numérique",
+    headerDesc:
+      "Phases d’exécution, jalons, indicateurs de performance et gestion des risques pour une transformation efficace.",
+    phasesTitle: "Phases clés",
+    phases: [
+      { name: "Diagnostic", desc: "Inventaire des systèmes et priorisation.", progress: 100 },
+      { name: "Conception", desc: "Architecture des services et gouvernance de la donnée.", progress: 85 },
+      { name: "Déploiement", desc: "Plateformes, intégration et extension de l’ID numérique.", progress: 60 },
+      { name: "Amélioration", desc: "Analytique avancée, UX et extension des services.", progress: 35 },
     ],
-    goalsTitle: "Objectifs stratégiques",
-    goals: [
-      { icon: "🏛️", title: "Gouvernement numérique", desc: "Transformer tous les services gouvernementaux en services numériques d'ici 2026", progress: "100% Numérisation" },
-      { icon: "👥", title: "Satisfaction des citoyens", desc: "Améliorer l'expérience utilisateur des services numériques gouvernementaux", progress: "90% Satisfaction" },
-      { icon: "⚡", title: "Efficacité opérationnelle", desc: "Réduire le temps de traitement des transactions gouvernementales de 70%", progress: "70% Gain de temps" }
-    ]
-  }
+    milestonesTitle: "Jalons majeurs (2023–2026)",
+    milestones: [
+      { date: "T4 2023", text: "Portail unifié pour les services prioritaires." },
+      { date: "T2 2024", text: "Extension de l’identité numérique et interconnexions." },
+      { date: "T1 2025", text: "Paiement en ligne unifié et services mobiles." },
+      { date: "T4 2026", text: "Dashboards temps réel & analytics avancés." },
+    ],
+    kpisTitle: "Indicateurs de performance (KPIs)",
+    kpis: [
+      { label: "Part de services 100% numériques", value: 62, target: 80 },
+      { label: "Délai moyen par service (min)", value: 7, target: 5 },
+      { label: "Adoption ID numérique (k users)", value: 420, target: 600 },
+      { label: "Disponibilité plateformes (uptime %)", value: 99.3, target: 99.7 },
+    ],
+    risksTitle: "Risques & mesures d’atténuation",
+    risks: [
+      { risk: "Résistance au changement", mitigation: "Formation, communication et conduite du changement." },
+      { risk: "Intégration legacy", mitigation: "Couche d’intégration + APIs standardisées." },
+      { risk: "Pénurie de compétences", mitigation: "Programmes de formation & partenariats académiques." },
+      { risk: "Risques de sécurité", mitigation: "Standards, audits réguliers et tests d’intrusion." },
+    ],
+    nextStepsTitle: "Prochaines étapes (6 mois)",
+    nextSteps: [
+      "Lancer une vague de services mobiles prioritaires.",
+      "Étendre l’interop via une couche d’intégration nationale.",
+      "Améliorer l’UX via des tests d’utilisabilité récurrents.",
+      "Déployer des dashboards temps réel.",
+    ],
+    ctaTitle: "Contribuez à la feuille de route",
+    ctaText: "Des idées pour accélérer l’exécution ? Partagez-les.",
+    ctaButton: "Envoyer une suggestion",
+  },
+  en: {
+    headerTitle: "Digital Roadmap",
+    headerDesc:
+      "Execution phases, milestones, KPIs, and risk management to deliver an effective transformation.",
+    phasesTitle: "Key phases",
+    phases: [
+      { name: "Assessment", desc: "Inventory of systems and prioritization.", progress: 100 },
+      { name: "Design", desc: "Service architecture and data governance.", progress: 85 },
+      { name: "Delivery", desc: "Platforms, integration, and digital ID rollout.", progress: 60 },
+      { name: "Optimization", desc: "Advanced analytics, UX, and service expansion.", progress: 35 },
+    ],
+    milestonesTitle: "Major milestones (2023–2026)",
+    milestones: [
+      { date: "Q4 2023", text: "Unified portal for priority services." },
+      { date: "Q2 2024", text: "Digital ID expansion & core interconnections." },
+      { date: "Q1 2025", text: "Unified e-payments and mobile-first services." },
+      { date: "Q4 2026", text: "Real-time dashboards & advanced analytics." },
+    ],
+    kpisTitle: "Key performance indicators (KPIs)",
+    kpis: [
+      { label: "Fully digital services share", value: 62, target: 80 },
+      { label: "Avg. completion time (min)", value: 7, target: 5 },
+      { label: "Digital ID adoption (k users)", value: 420, target: 600 },
+      { label: "Platform availability (uptime %)", value: 99.3, target: 99.7 },
+    ],
+    risksTitle: "Risks & mitigations",
+    risks: [
+      { risk: "Change resistance", mitigation: "Training, comms, and change management." },
+      { risk: "Legacy integration", mitigation: "Integration layer and standardized APIs." },
+      { risk: "Skills gap", mitigation: "Upskilling programs & academic partnerships." },
+      { risk: "Security threats", mitigation: "Standards, regular audits, and pentests." },
+    ],
+    nextStepsTitle: "Next steps (6 months)",
+    nextSteps: [
+      "Launch a mobile-first wave of priority services.",
+      "Expand interoperability via a national integration layer.",
+      "Improve UX through recurring usability tests.",
+      "Deploy real-time executive dashboards.",
+    ],
+    ctaTitle: "Co-create the roadmap",
+    ctaText: "Got suggestions to speed up execution? We’d love to hear them.",
+    ctaButton: "Send a suggestion",
+  },
 };
 
-export default function ProjectsPage({ params }) {
-  const resolvedParams = use(params); // لفك الـ Promise في Next.js 14+
-  const lang = resolvedParams.lang || "fr";
-  const t = translations[lang];
+// fallback sûr
+const tFor = (lang) => translations[lang] ?? translations.en ?? translations.ar;
+
+// --- nécessaire pour output: "export" avec segment [lang] ---
+export function generateStaticParams() {
+  return [{ lang: "ar" }, { lang: "fr" }, { lang: "en" }];
+}
+
+export default function RoadmapPage({ params }) {
+  const lang = params?.lang ?? "ar";
+  const t = tFor(lang);
 
   return (
-    <section className="projects-page">
-      <div className="projects-header">
-        <h1>{t.headerTitle}</h1>
-        <p>{t.headerDesc}</p>
+    <section style={{ maxWidth: 1180, margin: "0 auto", padding: "1.5rem" }}>
+      {/* HERO */}
+      <div
+        style={{
+          position: "relative",
+          borderRadius: 12,
+          overflow: "hidden",
+          border: "1px solid #e6e6e6",
+        }}
+      >
+        {/* Image hero optionnelle
+        <Image
+          src="/cover-roadmap.jpg"
+          alt=""
+          width={1920}
+          height={640}
+          style={{ width: "100%", height: 300, objectFit: "cover" }}
+          priority
+        />
+        */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15))",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#fff",
+            textAlign: "center",
+            padding: 16,
+          }}
+        >
+          <h1 style={{ margin: 0 }}>{t.headerTitle}</h1>
+          <p style={{ marginTop: 8, maxWidth: 860 }}>{t.headerDesc}</p>
+        </div>
       </div>
 
-      <div className="projects-grid">
-        {t.projects.map((p, i) => (
-          <div key={i} className={'project-card ${p.color}'}>
-            <div className="project-top">
-              <span className="icon">{p.icon}</span>
-              <span className="status">{p.status}</span>
-            </div>
-            <h2>{p.category}</h2>
-            <h3>{p.title}</h3>
-            <p>{p.desc}</p>
-            <ul>
-              {p.features.map((f,j)=><li key={j}>{f}</li>)}
-            </ul>
-            <div className="project-footer">
-              <p>{lang === "ar" ? "نسبة الإنجاز" : "Progression"}: <b>{p.progress}</b></p>
-              <p>{lang === "ar" ? "بداية" : "Début"}: {p.start}</p>
-              <p>{lang === "ar" ? "نهاية" : "Fin"}: {p.end}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="goals-section">
-        <h2>{t.goalsTitle}</h2>
-        <div className="goals-grid">
-          {t.goals.map((goal, i) => (
-            <div key={i} className="goal-card">
-              <div className="goal-icon">{goal.icon}</div>
-              <h3>{goal.title}</h3>
-              <p>{goal.desc}</p>
-              <p className="goal-progress">{goal.progress}</p>
+      {/* PHASES */}
+      <div style={{ marginTop: 20 }}>
+        <h2 style={{ marginTop: 0 }}>{t.phasesTitle}</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          }}
+        >
+          {t.phases.map((ph, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #e6e6e6",
+                borderRadius: 12,
+                padding: 16,
+                background: "#fff",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                <strong>{ph.name}</strong>
+                <span style={{ opacity: 0.8 }}>{ph.progress}%</span>
+              </div>
+              <p style={{ marginTop: 0 }}>{ph.desc}</p>
+              <div
+                style={{
+                  height: 8,
+                  borderRadius: 6,
+                  background: "#eef2ff",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    width: `${ph.progress}%`,
+                    height: "100%",
+                    background: "#3b82f6",
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* MILESTONES */}
+      <div
+        style={{
+          marginTop: 24,
+          border: "1px solid #e6e6e6",
+          borderRadius: 12,
+          background: "#fff",
+          padding: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.milestonesTitle}</h2>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          {t.milestones.map((m, i) => (
+            <li key={i} style={{ marginBottom: 8 }}>
+              <strong style={{ marginInlineEnd: 8 }}>{m.date}</strong>
+              <span>{m.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* KPIs */}
+      <div style={{ marginTop: 24 }}>
+        <h2 style={{ marginTop: 0 }}>{t.kpisTitle}</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          }}
+        >
+          {t.kpis.map((k, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #e6e6e6",
+                borderRadius: 12,
+                background: "#fff",
+                padding: 16,
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div>{k.label}</div>
+                <div>
+                  <strong>{k.value}</strong> / {k.target}
+                </div>
+              </div>
+              <div
+                style={{
+                  height: 8,
+                  borderRadius: 6,
+                  background: "#f3f4f6",
+                  overflow: "hidden",
+                  marginTop: 8,
+                }}
+              >
+                <div
+                  style={{
+                    width: `${Math.min((k.value / k.target) * 100, 100)}%`,
+                    height: "100%",
+                    background: "#10b981",
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* RISKS */}
+      <div
+        style={{
+          marginTop: 24,
+          border: "1px solid #e6e6e6",
+          borderRadius: 12,
+          background: "#fff",
+          padding: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.risksTitle}</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          }}
+        >
+          {t.risks.map((r, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #eee",
+                borderRadius: 10,
+                padding: 12,
+                background: "#fafafa",
+              }}
+            >
+              <div style={{ fontWeight: 600, marginBottom: 6 }}>{r.risk}</div>
+              <div style={{ opacity: 0.85 }}>{r.mitigation}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* NEXT STEPS */}
+      <div
+        style={{
+          marginTop: 24,
+          border: "1px solid #e6e6e6",
+          borderRadius: 12,
+          background: "#fff",
+          padding: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.nextStepsTitle}</h2>
+        <ol style={{ margin: 0, paddingInlineStart: 20 }}>
+          {t.nextSteps.map((s, i) => (
+            <li key={i} style={{ marginBottom: 6 }}>
+              {s}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* CTA */}
+      <div
+        style={{
+          marginTop: 24,
+          borderRadius: 12,
+          background: "#003366",
+          color: "#fff",
+          padding: 20,
+          textAlign: "center",
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.ctaTitle}</h2>
+        <p style={{ marginTop: 8, opacity: 0.95 }}>{t.ctaText}</p>
+        <a
+          href={`/${lang}/contact`}
+          style={{
+            display: "inline-block",
+            marginTop: 12,
+            background: "#fff",
+            color: "#003366",
+            padding: "10px 16px",
+            borderRadius: 10,
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+        >
+          {t.ctaButton}
+        </a>
       </div>
     </section>
   );
