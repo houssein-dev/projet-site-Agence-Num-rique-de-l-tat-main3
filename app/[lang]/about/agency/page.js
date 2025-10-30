@@ -1,10 +1,7 @@
-"use client";
-
+// app/[lang]/roadmap/page.js
 import Image from "next/image";
 
-/** ===============================
- *  i18n (ar / fr / en) + fallback
- *  =============================== */
+// --- i18n ---
 const translations = {
   ar: {
     headerTitle: "خارطة الطريق الرقمية",
@@ -49,7 +46,6 @@ const translations = {
     ctaText: "هل لديك ملاحظات أو اقتراحات لتحسين التنفيذ؟ نرحب بمساهمتك.",
     ctaButton: "أرسل اقتراحك",
   },
-
   fr: {
     headerTitle: "Feuille de route numérique",
     headerDesc:
@@ -59,26 +55,26 @@ const translations = {
       { name: "Diagnostic", desc: "Inventaire des systèmes et priorisation.", progress: 100 },
       { name: "Conception", desc: "Architecture des services et gouvernance de la donnée.", progress: 85 },
       { name: "Déploiement", desc: "Plateformes, intégration et extension de l’ID numérique.", progress: 60 },
-      { name: "Amélioration", desc: "Analytique avancée et UX, extension des services.", progress: 35 },
+      { name: "Amélioration", desc: "Analytique avancée, UX et extension des services.", progress: 35 },
     ],
     milestonesTitle: "Jalons majeurs (2023–2026)",
     milestones: [
       { date: "T4 2023", text: "Portail unifié pour les services prioritaires." },
-      { date: "T2 2024", text: "Extension de l’identité numérique et interconnexion." },
+      { date: "T2 2024", text: "Extension de l’identité numérique et interconnexions." },
       { date: "T1 2025", text: "Paiement en ligne unifié et services mobiles." },
-      { date: "T4 2026", text: "Tableaux de bord & analytics avancés pour le pilotage." },
+      { date: "T4 2026", text: "Dashboards temps réel & analytics avancés." },
     ],
     kpisTitle: "Indicateurs de performance (KPIs)",
     kpis: [
       { label: "Part de services 100% numériques", value: 62, target: 80 },
       { label: "Délai moyen par service (min)", value: 7, target: 5 },
-      { label: "Adoption ID numérique (k utilisateurs)", value: 420, target: 600 },
+      { label: "Adoption ID numérique (k users)", value: 420, target: 600 },
       { label: "Disponibilité plateformes (uptime %)", value: 99.3, target: 99.7 },
     ],
     risksTitle: "Risques & mesures d’atténuation",
     risks: [
       { risk: "Résistance au changement", mitigation: "Formation, communication et conduite du changement." },
-      { risk: "Intégration legacy", mitigation: "Couche d’intégration et APIs standardisées." },
+      { risk: "Intégration legacy", mitigation: "Couche d’intégration + APIs standardisées." },
       { risk: "Pénurie de compétences", mitigation: "Programmes de formation & partenariats académiques." },
       { risk: "Risques de sécurité", mitigation: "Standards, audits réguliers et tests d’intrusion." },
     ],
@@ -87,13 +83,12 @@ const translations = {
       "Lancer une vague de services mobiles prioritaires.",
       "Étendre l’interop via une couche d’intégration nationale.",
       "Améliorer l’UX via des tests d’utilisabilité récurrents.",
-      "Mettre en place des dashboards temps réel.",
+      "Déployer des dashboards temps réel.",
     ],
     ctaTitle: "Contribuez à la feuille de route",
-    ctaText: "Des suggestions pour accélérer l’exécution ? Partagez-les.",
+    ctaText: "Des idées pour accélérer l’exécution ? Partagez-les.",
     ctaButton: "Envoyer une suggestion",
   },
-
   en: {
     headerTitle: "Digital Roadmap",
     headerDesc:
@@ -139,11 +134,14 @@ const translations = {
   },
 };
 
-const tFor = (lang) => translations[lang] ?? translations.ar;
+// fallback sûr
+const tFor = (lang) => translations[lang] ?? translations.en ?? translations.ar;
 
-/** ===============================
- *  Page
- *  =============================== */
+// --- nécessaire pour output: "export" avec segment [lang] ---
+export function generateStaticParams() {
+  return [{ lang: "ar" }, { lang: "fr" }, { lang: "en" }];
+}
+
 export default function RoadmapPage({ params }) {
   const lang = params?.lang ?? "ar";
   const t = tFor(lang);
@@ -160,7 +158,7 @@ export default function RoadmapPage({ params }) {
         }}
       >
         <Image
-          src="/cover-about.jpg"   // remplace par une image existante (ex: /4.jpg) si besoin
+          src="/cover-roadmap.jpg" // mets cette image dans public/ ; sinon remplace par /4.jpg
           alt=""
           width={1920}
           height={640}
