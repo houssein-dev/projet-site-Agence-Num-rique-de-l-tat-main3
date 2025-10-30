@@ -29,16 +29,16 @@ const translations = {
     events: [
       { id: 1, title: "Lancement du Portail National", category: "Lancement", date: "2024-03-15",
         description: "Événement de lancement du portail national visant à faciliter l'accès à tous les services publics numériques via une plateforme unifiée et moderne.",
-        image: "/9.jpg" },
+        image: "./9.jpg" },
       { id: 2, title: "Atelier de formation sur la transformation numérique", category: "Formation", date: "2024-03-10",
         description: "Atelier pour développer les compétences des agents dans l'utilisation des technologies modernes.",
-        image: "/10.jpg" },
+        image: "./10.jpg" },
       { id: 3, title: "Partenariat avec les universités", category: "Partenariats", date: "2024-03-05",
         description: "Accords signés avec des universités pour développer des programmes académiques numériques.",
-        image: "/11.jpg" },
+        image: "./11.jpg" },
       { id: 4, title: "Présentation du projet d'identité numérique", category: "Projets", date: "2024-02-28",
         description: "Présentation du projet d'identité numérique unifiée pour faciliter l'accès aux services publics.",
-        image: "/12.jpg" }
+        image: "./12.jpg" }
     ]
   },
   en: {
