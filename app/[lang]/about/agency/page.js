@@ -1,5 +1,4 @@
 // app/[lang]/roadmap/page.js
-import Image from "next/image";
 
 // --- i18n ---
 const translations = {
@@ -157,20 +156,21 @@ export default function RoadmapPage({ params }) {
           border: "1px solid #e6e6e6",
         }}
       >
-        {/* <Image
-          src="/cover-roadmap.jpg" // mets cette image dans public/ ; sinon remplace par /4.jpg
+        {/* Image hero optionnelle
+        <Image
+          src="/cover-roadmap.jpg"
           alt=""
           width={1920}
           height={640}
           style={{ width: "100%", height: 300, objectFit: "cover" }}
           priority
-        /> */}
+        />
+        */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15))",
+            background: "linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15))",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -387,4 +387,3 @@ export default function RoadmapPage({ params }) {
     </section>
   );
 }
-src
