@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "export",
   images: { unoptimized: true },
-  // basePath: "/projet-site-Agence-Num-rique-de-l-tat-main3",
+  basePath: "/projet-site-Agence-Num-rique-de-l-tat-main3",
   assetPrefix: "/projet-site-Agence-Num-rique-de-l-tat-main3/",
   trailingSlash: true,
 };
