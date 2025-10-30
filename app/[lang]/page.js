@@ -1,203 +1,391 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
-/** i18n local pour la page d'accueil */
+/** ===============================
+ *  i18n (ar / fr / en) + fallback
+ *  =============================== */
 const translations = {
   ar: {
-    heroTitle: "الوكالة الرقمية للدولة",
-    heroSubtitle: "قيادة التحول الرقمي نحو مستقبل متطور ومبتكر",
-    presentationTitle: "عرض تقديمي للوكالة الرقمية للدولة",
-    presentationDesc: `تُعد الوكالة الرقمية للدولة المؤسسة الرائدة في مجال التحول الرقمي في موريتانيا، حيث تسعى إلى تطوير وتحديث البنية التحتية الرقمية وتعزيز الخدمات الإلكترونية الحكومية لخدمة المواطنين والمؤسسات على أكمل وجه.
-
-نعمل على تنفيذ استراتيجية شاملة للتحول الرقمي تشمل جميع القطاعات الحكومية، مع التركيز على الابتكار والجودة في تقديم الخدمات الرقمية المتطورة.`,
-    cards: [
-      { value: "+1M", label: "مستفيد", color: "#c0392b", bg: "#fef4f4" },
-      { value: "+25", label: "وزارة شريكة", color: "#27ae60", bg: "#ecf9f1" },
-      { value: "+50", label: "مشروع رقمي", color: "#2980b9", bg: "#eef5ff" }
+    headerTitle: "خارطة الطريق الرقمية",
+    headerDesc:
+      "مراحل التنفيذ، الأهداف المرحلية، مؤشرات الأداء، والمخاطر مع إجراءات التخفيف لضمان تحول رقمي فعّال.",
+    phasesTitle: "المراحل الرئيسية",
+    phases: [
+      { name: "التشخيص", desc: "حصر الأنظمة والعمليات الحالية وتحديد الأولويات.", progress: 100 },
+      { name: "التصميم", desc: "هندسة الخدمات والمعايير وحوكمة البيانات.", progress: 85 },
+      { name: "التنفيذ", desc: "تطوير المنصات والتكامل وتوسيع الهوية الرقمية.", progress: 60 },
+      { name: "التحسين", desc: "تحليلات متقدمة وتجربة مستخدم أفضل وتوسيع الخدمات.", progress: 35 },
     ],
-    newsTitle: "آخر الأخبار",
-    newsCards: [
-      { img: "/8.jpg", title: "ورشات تدريبية للموظفين", desc: "تنظيم ورشات تدريبية لرفع الكفاءات الرقمية لدى موظفي الإدارات الحكومية." },
-      { img: "/7.jpg", title: "شراكة مع وزارات الدولة", desc: "وقعت الوكالة الرقمية اتفاقيات تعاون مع عدة وزارات لتعزيز التحول الرقمي." },
-      { img: "/6.jpg", title: "إطلاق منصة حكومية جديدة", desc: "تم إطلاق منصة حكومية جديدة لتسهيل الوصول إلى الخدمات الرقمية للمواطنين." }
-    ]
+    milestonesTitle: "محطات أساسية (2023–2026)",
+    milestones: [
+      { date: "Q4 2023", text: "إطلاق البوابة الموحدة للخدمات ذات الأولوية." },
+      { date: "Q2 2024", text: "توسيع الهوية الرقمية وربط الجهات الرئيسية." },
+      { date: "Q1 2025", text: "إطلاق الدفع الإلكتروني الموحد وخدمات الهاتف." },
+      { date: "Q4 2026", text: "لوحات قيادة وتحليلات بيانات متقدمة لاتخاذ القرار." },
+    ],
+    kpisTitle: "مؤشرات الأداء (KPIs)",
+    kpis: [
+      { label: "نسبة الخدمات الرقمية الكاملة", value: 62, target: 80 },
+      { label: "زمن إنجاز الخدمة (متوسط/دقيقة)", value: 7, target: 5 },
+      { label: "تبني الهوية الرقمية (ألف مستخدم)", value: 420, target: 600 },
+      { label: "إتاحة المنصات (uptime %)", value: 99.3, target: 99.7 },
+    ],
+    risksTitle: "المخاطر وخطط التخفيف",
+    risks: [
+      { risk: "مقاومة التغيير", mitigation: "التدريب والتواصل وإدارة التغيير." },
+      { risk: "تكامل الأنظمة القديمة", mitigation: "طبقة تكامل وواجهات APIs معيارية." },
+      { risk: "نقص المهارات", mitigation: "برامج تدريب وشراكات مع الجامعات." },
+      { risk: "مخاطر أمنية", mitigation: "معايير أمنية ومراجعات دورية واختبارات اختراق." },
+    ],
+    nextStepsTitle: "الخطوات القادمة (6 أشهر)",
+    nextSteps: [
+      "إطلاق موجة خدمات ذات أولوية للهواتف.",
+      "توسيع الربط البيني عبر طبقة تكامل وطنية.",
+      "تحسين تجربة المستخدم عبر اختبارات استعمال دورية.",
+      "لوحات مؤشرات آنية لصنّاع القرار.",
+    ],
+    ctaTitle: "شاركنا خارطة الطريق",
+    ctaText: "هل لديك ملاحظات أو اقتراحات لتحسين التنفيذ؟ نرحب بمساهمتك.",
+    ctaButton: "أرسل اقتراحك",
   },
+
   fr: {
-    heroTitle: "Agence Numérique de l'État",
-    heroSubtitle: "Mener la transformation numérique vers un avenir innovant et développé",
-    presentationTitle: "Présentation de l'Agence Numérique de l'État",
-    presentationDesc: `L'Agence Numérique de l'État est l'institution leader en matière de transformation numérique en Mauritanie, visant à développer et moderniser l'infrastructure numérique et à améliorer les services électroniques pour les citoyens et les institutions.
-
-Nous mettons en œuvre une stratégie globale couvrant tous les secteurs, avec un fort accent sur l'innovation et la qualité.`,
-    cards: [
-      { value: "+1M", label: "Bénéficiaires", color: "#c0392b", bg: "#fef4f4" },
-      { value: "+25", label: "Ministères partenaires", color: "#27ae60", bg: "#ecf9f1" },
-      { value: "+50", label: "Projets numériques", color: "#2980b9", bg: "#eef5ff" }
+    headerTitle: "Feuille de route numérique",
+    headerDesc:
+      "Phases d’exécution, jalons, indicateurs de performance et gestion des risques pour une transformation efficace.",
+    phasesTitle: "Phases clés",
+    phases: [
+      { name: "Diagnostic", desc: "Inventaire des systèmes et priorisation.", progress: 100 },
+      { name: "Conception", desc: "Architecture des services et gouvernance de la donnée.", progress: 85 },
+      { name: "Déploiement", desc: "Plateformes, intégration et extension de l’ID numérique.", progress: 60 },
+      { name: "Amélioration", desc: "Analytique avancée et UX, extension des services.", progress: 35 },
     ],
-    newsTitle: "Dernières nouvelles",
-    newsCards: [
-      { img: "/8.jpg", title: "Ateliers de formation pour le personnel", desc: "Organisation d'ateliers pour améliorer les compétences numériques des agents publics." },
-      { img: "/7.jpg", title: "Partenariats ministériels", desc: "Accords de coopération avec plusieurs ministères pour renforcer la transformation numérique." },
-      { img: "/6.jpg", title: "Lancement d'une nouvelle plateforme", desc: "Une nouvelle plateforme publique pour faciliter l'accès aux services numériques." }
-    ]
+    milestonesTitle: "Jalons majeurs (2023–2026)",
+    milestones: [
+      { date: "T4 2023", text: "Portail unifié pour les services prioritaires." },
+      { date: "T2 2024", text: "Extension de l’identité numérique et interconnexion." },
+      { date: "T1 2025", text: "Paiement en ligne unifié et services mobiles." },
+      { date: "T4 2026", text: "Tableaux de bord & analytics avancés pour le pilotage." },
+    ],
+    kpisTitle: "Indicateurs de performance (KPIs)",
+    kpis: [
+      { label: "Part de services 100% numériques", value: 62, target: 80 },
+      { label: "Délai moyen par service (min)", value: 7, target: 5 },
+      { label: "Adoption ID numérique (k utilisateurs)", value: 420, target: 600 },
+      { label: "Disponibilité plateformes (uptime %)", value: 99.3, target: 99.7 },
+    ],
+    risksTitle: "Risques & mesures d’atténuation",
+    risks: [
+      { risk: "Résistance au changement", mitigation: "Formation, communication et conduite du changement." },
+      { risk: "Intégration legacy", mitigation: "Couche d’intégration et APIs standardisées." },
+      { risk: "Pénurie de compétences", mitigation: "Programmes de formation & partenariats académiques." },
+      { risk: "Risques de sécurité", mitigation: "Standards, audits réguliers et tests d’intrusion." },
+    ],
+    nextStepsTitle: "Prochaines étapes (6 mois)",
+    nextSteps: [
+      "Lancer une vague de services mobiles prioritaires.",
+      "Étendre l’interop via une couche d’intégration nationale.",
+      "Améliorer l’UX via des tests d’utilisabilité récurrents.",
+      "Mettre en place des dashboards temps réel.",
+    ],
+    ctaTitle: "Contribuez à la feuille de route",
+    ctaText: "Des suggestions pour accélérer l’exécution ? Partagez-les.",
+    ctaButton: "Envoyer une suggestion",
   },
-  en: {
-    heroTitle: "State Digital Agency",
-    heroSubtitle: "Leading digital transformation toward an innovative future",
-    presentationTitle: "State Digital Agency Overview",
-    presentationDesc: `The State Digital Agency drives Mauritania’s digital transformation by modernizing infrastructure and enhancing e-government services.
 
-We execute a comprehensive cross-sector strategy with a strong focus on innovation and quality.`,
-    cards: [
-      { value: "+1M", label: "Beneficiaries", color: "#c0392b", bg: "#fef4f4" },
-      { value: "+25", label: "Partner ministries", color: "#27ae60", bg: "#ecf9f1" },
-      { value: "+50", label: "Digital projects", color: "#2980b9", bg: "#eef5ff" }
+  en: {
+    headerTitle: "Digital Roadmap",
+    headerDesc:
+      "Execution phases, milestones, KPIs, and risk management to deliver an effective transformation.",
+    phasesTitle: "Key phases",
+    phases: [
+      { name: "Assessment", desc: "Inventory of systems and prioritization.", progress: 100 },
+      { name: "Design", desc: "Service architecture and data governance.", progress: 85 },
+      { name: "Delivery", desc: "Platforms, integration, and digital ID rollout.", progress: 60 },
+      { name: "Optimization", desc: "Advanced analytics, UX, and service expansion.", progress: 35 },
     ],
-    newsTitle: "Latest news",
-    newsCards: [
-      { img: "/8.jpg", title: "Staff training workshops", desc: "Workshops to strengthen public-sector digital skills." },
-      { img: "/7.jpg", title: "Ministry partnerships", desc: "Cooperation agreements to accelerate the transformation." },
-      { img: "/6.jpg", title: "New government platform", desc: "A platform to ease access to digital public services." }
-    ]
-  }
+    milestonesTitle: "Major milestones (2023–2026)",
+    milestones: [
+      { date: "Q4 2023", text: "Unified portal for priority services." },
+      { date: "Q2 2024", text: "Digital ID expansion & core interconnections." },
+      { date: "Q1 2025", text: "Unified e-payments and mobile-first services." },
+      { date: "Q4 2026", text: "Real-time dashboards & advanced analytics." },
+    ],
+    kpisTitle: "Key performance indicators (KPIs)",
+    kpis: [
+      { label: "Fully digital services share", value: 62, target: 80 },
+      { label: "Avg. completion time (min)", value: 7, target: 5 },
+      { label: "Digital ID adoption (k users)", value: 420, target: 600 },
+      { label: "Platform availability (uptime %)", value: 99.3, target: 99.7 },
+    ],
+    risksTitle: "Risks & mitigations",
+    risks: [
+      { risk: "Change resistance", mitigation: "Training, comms, and change management." },
+      { risk: "Legacy integration", mitigation: "Integration layer and standardized APIs." },
+      { risk: "Skills gap", mitigation: "Upskilling programs & academic partnerships." },
+      { risk: "Security threats", mitigation: "Standards, regular audits, and pentests." },
+    ],
+    nextStepsTitle: "Next steps (6 months)",
+    nextSteps: [
+      "Launch a mobile-first wave of priority services.",
+      "Expand interoperability via a national integration layer.",
+      "Improve UX through recurring usability tests.",
+      "Deploy real-time executive dashboards.",
+    ],
+    ctaTitle: "Co-create the roadmap",
+    ctaText: "Got suggestions to speed up execution? We’d love to hear them.",
+    ctaButton: "Send a suggestion",
+  },
 };
 
-// fallback sûr si une langue manque
 const tFor = (lang) => translations[lang] ?? translations.ar;
 
-export default function HomePage({ params }) {
+/** ===============================
+ *  Page
+ *  =============================== */
+export default function RoadmapPage({ params }) {
   const lang = params?.lang ?? "ar";
   const t = tFor(lang);
 
-  // chemins absolus → compatibles basePath/assetPrefix + export
-  const [currentImage, setCurrentImage] = useState("/1.jpg");
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCurrentImage((prev) => (prev === "/2.jpg" ? "/1.jpg" : "/2.jpg"));
-    }, 3000);
-    return () => clearInterval(id);
-  }, []);
-
   return (
-    <>
-      {/* Hero */}
-      <div style={{
-        textAlign: 'center',
-        border: '1px solid #77777730',
-        width: '100%',
-        background: '#f9f9f9',
-        position: 'relative',
-        borderRadius: '7px',
-        marginBottom: '2rem'
-      }}>
+    <section style={{ maxWidth: 1180, margin: "0 auto", padding: "1.5rem" }}>
+      {/* HERO */}
+      <div
+        style={{
+          position: "relative",
+          borderRadius: 12,
+          overflow: "hidden",
+          border: "1px solid #e6e6e6",
+        }}
+      >
         <Image
-          src={currentImage}
+          src="/cover-about.jpg"   // remplace par une image existante (ex: /4.jpg) si besoin
           alt=""
-          width={1600}
-          height={600}
-          style={{ width: "100%", height: "400px", objectFit: "cover" }}
+          width={1920}
+          height={640}
+          style={{ width: "100%", height: 300, objectFit: "cover" }}
           priority
         />
-        <h1 style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          color: "white",
-          fontSize: "2.5rem",
-          textShadow: "2px 2px 4px rgba(0,0,0,0.5)"
-        }}>{t.heroTitle}</h1>
-        <h3 style={{
-          position: "absolute",
-          top: "65%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          color: "white",
-          textShadow: "1px 1px 2px rgba(0,0,0,0.5)"
-        }}>{t.heroSubtitle}</h3>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15))",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#fff",
+            textAlign: "center",
+            padding: 16,
+          }}
+        >
+          <h1 style={{ margin: 0 }}>{t.headerTitle}</h1>
+          <p style={{ marginTop: 8, maxWidth: 860 }}>{t.headerDesc}</p>
+        </div>
       </div>
 
-      {/* Présentation + stats */}
-      <div style={{
-        marginTop: "2rem",
-        border: "1px solid #ddd",
-        borderRadius: "10px",
-        backgroundColor: "#f9f9f9",
-        padding: '2rem'
-      }}>
-        <section style={{
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "2rem",
-          flexWrap: "wrap",
-        }}>
-          <Image
-            src="/5.jpg"
-            alt=""
-            width={400}
-            height={300}
-            style={{ borderRadius: "8px", flexShrink: 0 }}
-          />
-          <div style={{ flex: 1, minWidth: "250px" }}>
-            <h1 style={{ marginBottom: "1rem", color: "#333" }}>{t.presentationTitle}</h1>
-            <p style={{ lineHeight: "1.8", color: "#444", whiteSpace: "pre-line" }}>
-              {t.presentationDesc}
-            </p>
-
-            <div style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "1rem",
-              marginTop: "1.5rem",
-            }}>
-              {t.cards.map((card, idx) => (
-                <div key={idx} style={{
-                  backgroundColor: card.bg,
-                  padding: "1rem 2rem",
-                  borderRadius: "8px",
-                  textAlign: "center",
-                  flex: "1",
-                  minWidth: "120px",
-                }}>
-                  <h2 style={{ color: card.color, margin: 0 }}>{card.value}</h2>
-                  <p style={{ margin: 0 }}>{card.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* News */}
-      <div style={{ marginTop: "3rem" }}>
-        <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>{t.newsTitle}</h2>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "1.5rem",
-        }}>
-          {t.newsCards.map((news, idx) => (
-            <div key={idx} style={{
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-              overflow: "hidden",
-              backgroundColor: "#fff",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-            }}>
-              <Image src={news.img} alt="" width={800} height={400}
-                     style={{ width: "100%", height: "200px", objectFit: "cover" }} />
-              <div style={{ padding: "1rem" }}>
-                <h3 style={{ margin: "0 0 0.5rem 0" }}>{news.title}</h3>
-                <p style={{ margin: 0, color: "#555" }}>{news.desc}</p>
+      {/* PHASES */}
+      <div style={{ marginTop: 20 }}>
+        <h2 style={{ marginTop: 0 }}>{t.phasesTitle}</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          }}
+        >
+          {t.phases.map((ph, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #e6e6e6",
+                borderRadius: 12,
+                padding: 16,
+                background: "#fff",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                <strong>{ph.name}</strong>
+                <span style={{ opacity: 0.8 }}>{ph.progress}%</span>
+              </div>
+              <p style={{ marginTop: 0 }}>{ph.desc}</p>
+              <div
+                style={{
+                  height: 8,
+                  borderRadius: 6,
+                  background: "#eef2ff",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    width: `${ph.progress}%`,
+                    height: "100%",
+                    background: "#3b82f6",
+                  }}
+                />
               </div>
             </div>
           ))}
         </div>
       </div>
-    </>
+
+      {/* MILESTONES */}
+      <div
+        style={{
+          marginTop: 24,
+          border: "1px solid #e6e6e6",
+          borderRadius: 12,
+          background: "#fff",
+          padding: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.milestonesTitle}</h2>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          {t.milestones.map((m, i) => (
+            <li key={i} style={{ marginBottom: 8 }}>
+              <strong style={{ marginInlineEnd: 8 }}>{m.date}</strong>
+              <span>{m.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* KPIs */}
+      <div style={{ marginTop: 24 }}>
+        <h2 style={{ marginTop: 0 }}>{t.kpisTitle}</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          }}
+        >
+          {t.kpis.map((k, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #e6e6e6",
+                borderRadius: 12,
+                background: "#fff",
+                padding: 16,
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div>{k.label}</div>
+                <div>
+                  <strong>{k.value}</strong> / {k.target}
+                </div>
+              </div>
+              <div
+                style={{
+                  height: 8,
+                  borderRadius: 6,
+                  background: "#f3f4f6",
+                  overflow: "hidden",
+                  marginTop: 8,
+                }}
+              >
+                <div
+                  style={{
+                    width: `${Math.min((k.value / k.target) * 100, 100)}%`,
+                    height: "100%",
+                    background: "#10b981",
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* RISKS */}
+      <div
+        style={{
+          marginTop: 24,
+          border: "1px solid #e6e6e6",
+          borderRadius: 12,
+          background: "#fff",
+          padding: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.risksTitle}</h2>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          }}
+        >
+          {t.risks.map((r, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #eee",
+                borderRadius: 10,
+                padding: 12,
+                background: "#fafafa",
+              }}
+            >
+              <div style={{ fontWeight: 600, marginBottom: 6 }}>{r.risk}</div>
+              <div style={{ opacity: 0.85 }}>{r.mitigation}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* NEXT STEPS */}
+      <div
+        style={{
+          marginTop: 24,
+          border: "1px solid #e6e6e6",
+          borderRadius: 12,
+          background: "#fff",
+          padding: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.nextStepsTitle}</h2>
+        <ol style={{ margin: 0, paddingInlineStart: 20 }}>
+          {t.nextSteps.map((s, i) => (
+            <li key={i} style={{ marginBottom: 6 }}>
+              {s}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* CTA */}
+      <div
+        style={{
+          marginTop: 24,
+          borderRadius: 12,
+          background: "#003366",
+          color: "#fff",
+          padding: 20,
+          textAlign: "center",
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>{t.ctaTitle}</h2>
+        <p style={{ marginTop: 8, opacity: 0.95 }}>{t.ctaText}</p>
+        <a
+          href={`/${lang}/contact`}
+          style={{
+            display: "inline-block",
+            marginTop: 12,
+            background: "#fff",
+            color: "#003366",
+            padding: "10px 16px",
+            borderRadius: 10,
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+        >
+          {t.ctaButton}
+        </a>
+      </div>
+    </section>
   );
 }
